@@ -53,6 +53,6 @@ if (process.env.NODE_ENV !== "production") {
         console.log(`Server is runing on PORT:: ${PORT}`)
     })
 }
-export default Server;
+export default server;
 
 
