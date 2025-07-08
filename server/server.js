@@ -6,8 +6,7 @@ import { connectDB } from './lib/db.js';
 import userRouter from './routes/userRoutes.js'
 import messageRouter from "./routes/messageRoutes.js";
 import { Server } from "socket.io";
-// import { Socket } from "dgram";
-// import { user } from 'react';
+
 
 //express app
 const app = express()
@@ -30,7 +29,7 @@ io.on("connection", (socket) => {
     socket.on("disconnect", () => {
         console.log("User Disconnected", userId);
         delete userSocketMap[userId];
-        io.emit("getOnlineUsers",)
+        io.emit("getOnlineUsers", Object.keys(userSocketMap));
     })
 })
 
