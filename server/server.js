@@ -25,12 +25,12 @@ export const userSocketMap = {};
 io.on("connection", (socket) => {
     const userId = socket.handshake.query.userId;
     console.log("User Connected", userId);
-    if(userId) userSocketMap[userId] =socket.id;
+    if (userId) userSocketMap[userId] = socket.id;
     io.emit("getOnlineUsers", Object.keys(userSocketMap));
     socket.on("disconnect", () => {
         console.log("User Disconnected", userId);
         delete userSocketMap[userId];
-        io.emit("getOnlineUsers", )
+        io.emit("getOnlineUsers",)
     })
 })
 
@@ -46,9 +46,13 @@ app.use("/api/messages", messageRouter);
 //Connected database
 await connectDB();
 
-const PORT = process.env.PORT || 5000;
 
-server.listen(PORT, () => {
-    console.log(`Server is runing on PORT:: ${PORT}`)
-})
+if (process.env.NODE_ENV !== "production") {
+    const PORT = process.env.PORT || 5000;
+    server.listen(PORT, () => {
+        console.log(`Server is runing on PORT:: ${PORT}`)
+    })
+}
+export default Server;
+
 
